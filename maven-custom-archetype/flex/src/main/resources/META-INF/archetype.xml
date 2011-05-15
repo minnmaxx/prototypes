@@ -1,0 +1,13 @@
+<archetype>
+	<id>fds-flex</id>
+	<allowPartial>true</allowPartial>
+	<sources>
+		<source>src/main/flex/deleteme.txt</source>
+	</sources>
+  <resources>  
+		<resource>src/main/resources/deleteme.txt</resource>
+  </resources>  
+  <testSources>
+    <source>src/test/flex/deleteme.txt</source>
+  </testSources>
+</archetype>

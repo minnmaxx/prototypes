@@ -1,0 +1,3 @@
+rem call C:\Package\apache-maven-2.2.1\bin\mvn archetype:generate -DarchetypeGroupId=org.talz.archetypes -DarchetypeArtifactId=basic-war -DarchetypeVersion=0.1 -DgroupId=com.apress.prodmserver -DartifactId=com.apress.prodmserver.vehicle.web -Dversion=1.0.0 -DcontextRoot=vehicle
+
+call C:\Package\apache-maven-2.2.1\bin\mvn archetype:generate -DarchetypeGroupId=org.talz.archetypes -DarchetypeArtifactId=basic-war -DarchetypeVersion=0.1 -DgroupId=net.fractech.fds -DartifactId=net.fractech.fds.web.standalone -Dversion=1.0.0 -DcontextRoot=fds

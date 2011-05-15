@@ -1,0 +1,20 @@
+<archetype>
+	<id>fds-jar</id>
+	<allowPartial>true</allowPartial>
+	<sources>
+		<source>src/main/java/deleteme.txt</source>
+	</sources>
+  <resources>  
+		<resource>src/main/resources/META-INF/MANIFEST.MF</resource>
+		<resource>.settings/org.eclipse.wst.common.project.facet.core.xml</resource>
+		<resource>.project</resource>
+		<resource>.classpath</resource>
+		<resource>template.mf</resource>
+  </resources>  
+  <testSources>
+    <source>src/test/java/deleteme.txt</source>
+  </testSources>
+  <testResources>
+		<resource>src/test/resources/testng.xml</resource>
+  </testResources>
+</archetype>

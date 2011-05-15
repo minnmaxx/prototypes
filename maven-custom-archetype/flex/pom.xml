@@ -1,0 +1,34 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.fractech</groupId>
+  <artifactId>fds-flex</artifactId>
+  <version>0.1</version>
+  <packaging>swf</packaging>
+  
+    <pluginRepositories>
+        <pluginRepository>
+            <id>servebox</id>
+            <name>ServeBox Plugin Repository</name>
+            <url>http://maven.servebox.org/repository</url>
+        </pluginRepository>     
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>servebox</id>
+            <name>ServeBox Plugin Repository</name>
+            <url>http://maven.servebox.org/repository</url>
+        </repository>   
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.servebox.flex</groupId>
+                <artifactId>flex-plugin</artifactId>
+                <version>2.3.0</version>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

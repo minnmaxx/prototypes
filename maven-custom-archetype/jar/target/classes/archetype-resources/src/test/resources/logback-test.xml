@@ -1,0 +1,16 @@
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%thread,%logger] %msg %n</pattern>
+		</layout>
+	</appender>
+	
+	<logger name="net.fractech.fds" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+   
+  	<root level="WARN">
+    	<appender-ref ref="STDOUT" />
+  	</root>
+</configuration>

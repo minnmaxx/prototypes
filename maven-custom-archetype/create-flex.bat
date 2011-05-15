@@ -1,0 +1,1 @@
+C:\packages\apache-maven-2.2.1\bin\mvn archetype:generate -DarchetypeGroupId=net.fractech -DarchetypeArtifactId=fds-flex -DarchetypeVersion=0.1 -DgroupId=net.fractech -DartifactId=net.fractech.fds.flex -Dversion=1.0

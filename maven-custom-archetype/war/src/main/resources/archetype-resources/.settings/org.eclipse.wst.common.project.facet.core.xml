@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="FDS dm Server v2.0.2"/>
+  <installed facet="com.springsource.server.bundle" version="1.0"/>
+  <installed facet="jst.java" version="6.0"/>
+  <installed facet="jst.web" version="2.5"/>
+</faceted-project>
