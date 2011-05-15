@@ -1,0 +1,1 @@
+C:\Package\pgsql\bin\pg_ctl -D "C:/Workspace/hht/postgresql/data" -l "C:/Workspace/hht/work/postgresql-log.txt" start
