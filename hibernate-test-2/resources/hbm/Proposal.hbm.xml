@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="domain.Proposal" table="Proposal">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+            unsaved-value="0"
+        >
+        	<generator class="sequence">
+            	<param name="sequence">proposal_id_seq</param>
+        	</generator>
+        </id>
+        
+        <property column="number" type="java.lang.String" name="number" not-null="true" length="128" />
+        <property column="version" type="java.lang.Integer" name="version" />
+		<many-to-one name="company" column="company_id" class="domain.Company" lazy="false" fetch="join" />
+		
+    </class>
+     
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+ start the server: call pg_ctl -D <directory for database> -l <log file> start
+ stop the server: call pg_ctl -D <directory for database> stop
+ 
+ select column_name, data_type, character_maximum_length from information_schema.columns where table_name='company';
+ select table_name from information_schema.tables where table_schema='public';
+ 
+ \i C:/fractech/ariss/jpatest/scripts/CreateObject.sql
+ \i C:/fractech/trunk/scripts/insert-data.txt
+ 
+ select * from information_schema.sequences;
+ select currval('proposal_id_seq');
+ 

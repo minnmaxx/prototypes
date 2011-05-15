@@ -1,0 +1,23 @@
+Conventions
+
+Note that this convention should be moved to Fractech wiki no later than April 15, 2010.
+
+Table Names: No prefix
+Table id column: id	( should not prefix with table name )
+Table columns: firstname, lastname (in most cases, fields should not be prefixed with table's name)
+Table foreign key column: foreignId ( use camel, do not use underscore "_" to separate entity name and the word Id );
+
+
+Sequence: seq_entity_id
+Manual Index: IX_tableName_columnName
+
+
+In most cases Views, Stored Procedures and Functions would not be used as they can be achieved in code layer
+View: v_
+Stored Procedeure: sproc_
+Function: fn_
+
+Trigger is also not a desirable feature
+Insert Trigger: tri_ins_
+Update Trigger: tri_upd_
+Delete Trigger: tri_del_

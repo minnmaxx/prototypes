@@ -1,0 +1,19 @@
+DELETE FROM Company;
+DELETE FROM Proposal;
+
+SELECT setval('company_id_seq', 1, false);  
+SELECT setval('proposal_id_seq', 1, false);  
+
+INSERT INTO Company (version, name) VALUES
+	( 1, 'Company 1' ),
+	( 1, 'Company 2' );
+
+INSERT INTO Proposal (version, number, company_id) VALUES
+	( 1, 'Proposal 1', 1 ),
+	( 1, 'Proposal 2', 1 ),
+	( 1, 'Proposal 3', 2 ),
+	( 1, 'Proposal 4', 2 );
+	
+INSERT INTO Schedule (version, name, proposal_id) VALUES
+	( 1, 'Schedule 1', 1 ),
+	( 1, 'Schedule 2', 2 );

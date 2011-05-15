@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 2.0//EN" 
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="domain.Company" table="Company">
+
+        <id
+            name="id"
+            column="id"
+            type="java.lang.Long"
+            unsaved-value="0"
+        >
+        	<generator class="sequence">
+            	<param name="sequence">company_id_seq</param>
+        	</generator>
+        </id>
+        
+        
+        <set name="proposals" inverse="true">
+        	<key column="company_id" />
+        	<one-to-many class="domain.Proposal" />
+        </set>
+         
+        <property column="name" type="java.lang.String" name="name" not-null="true" length="128" />
+        <property column="version" type="java.lang.Integer" name="version" />
+        
+        <!-- 
+        <set name ="accounts" inverse = "true" cascade="all-delete-orphan">
+             <key column ="CUSTOMER_ID"/>
+             <one-to-many class="springexample.hibernate.Account"/>			
+		</set>
+		 -->
+		 
+    </class>
+
+     
+</hibernate-mapping>

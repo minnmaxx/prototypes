@@ -1,0 +1,266 @@
+INFO main org.springframework.test.context.TestContextManager - @TestExecutionListeners is not present for class [class org.jpatest.domain.DBTest]: using defaults.
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/spring/applicationContext.xml]
+INFO main org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 14:58:44 PST 2010]; root of context hierarchy
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\database.properties]
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\log4j.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO main org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO main org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.3.1.GA
+INFO main org.hibernate.cfg.Environment - Hibernate 3.2.6
+INFO main org.hibernate.cfg.Environment - hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - Bytecode provider name : cglib
+INFO main org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+INFO main org.hibernate.ejb.Version - Hibernate EntityManager 3.3.2.GA
+INFO main org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: persistenceUnit
+	...]
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Schedule
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Schedule on table Schedule
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Proposal
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Proposal on table Proposal
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Company
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Company on table Company
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Proposal.schedules -> Schedule
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Company.proposals -> Proposal
+INFO main org.hibernate.cfg.AnnotationConfiguration - Hibernate Validator not found: ignoring
+INFO main org.hibernate.connection.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+INFO main org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider - Using provided datasource
+INFO main org.hibernate.cfg.SettingsFactory - RDBMS: PostgreSQL, version: 8.4.2
+INFO main org.hibernate.cfg.SettingsFactory - JDBC driver: PostgreSQL Native Driver, version: PostgreSQL 8.3 JDBC4 with SSL (build 604)
+INFO main org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.PostgreSQLDialect
+INFO main org.hibernate.transaction.TransactionFactoryFactory - Transaction strategy: org.hibernate.transaction.JDBCTransactionFactory
+INFO main org.hibernate.transaction.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+INFO main org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+INFO main org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+INFO main org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+INFO main org.hibernate.hql.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+INFO main org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+INFO main org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Query cache: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Cache provider: org.hibernate.cache.NoCacheProvider
+INFO main org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+INFO main org.hibernate.cfg.SettingsFactory - Statistics: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+INFO main org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+INFO main org.hibernate.impl.SessionFactoryImpl - building session factory
+INFO main org.hibernate.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+INFO Thread-2 org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 14:58:44 PST 2010]; root of context hierarchy
+INFO Thread-2 org.springframework.beans.factory.support.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO Thread-2 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO Thread-2 org.hibernate.impl.SessionFactoryImpl - closing
+INFO main org.springframework.test.context.TestContextManager - @TestExecutionListeners is not present for class [class org.jpatest.domain.DBTest]: using defaults.
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/spring/applicationContext.xml]
+INFO main org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 15:15:34 PST 2010]; root of context hierarchy
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\database.properties]
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\log4j.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO main org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO main org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.4.0.GA
+INFO main org.hibernate.cfg.Environment - Hibernate 3.3.0.SP1
+INFO main org.hibernate.cfg.Environment - hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+INFO main org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.1.0.GA
+INFO main org.hibernate.ejb.Version - Hibernate EntityManager 3.4.0.GA
+INFO main org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: persistenceUnit
+	...]
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Schedule
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Schedule on table Schedule
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Proposal
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Proposal on table Proposal
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Company
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Company on table Company
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Proposal.schedules -> Schedule
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Company.proposals -> Proposal
+INFO main org.hibernate.cfg.AnnotationConfiguration - Hibernate Validator not found: ignoring
+INFO main org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+INFO main org.hibernate.connection.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+INFO main org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider - Using provided datasource
+INFO main org.hibernate.cfg.SettingsFactory - RDBMS: PostgreSQL, version: 8.4.2
+INFO main org.hibernate.cfg.SettingsFactory - JDBC driver: PostgreSQL Native Driver, version: PostgreSQL 8.3 JDBC4 with SSL (build 604)
+INFO main org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.PostgreSQLDialect
+INFO main org.hibernate.transaction.TransactionFactoryFactory - Transaction strategy: org.hibernate.transaction.JDBCTransactionFactory
+INFO main org.hibernate.transaction.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+INFO main org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+INFO main org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+INFO main org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+INFO main org.hibernate.hql.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+INFO main org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+INFO main org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Query cache: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+INFO main org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+INFO main org.hibernate.cfg.SettingsFactory - Statistics: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+INFO main org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+INFO main org.hibernate.impl.SessionFactoryImpl - building session factory
+INFO main org.hibernate.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+INFO Thread-2 org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 15:15:34 PST 2010]; root of context hierarchy
+INFO Thread-2 org.springframework.beans.factory.support.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO Thread-2 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO Thread-2 org.hibernate.impl.SessionFactoryImpl - closing
+INFO main org.springframework.test.context.TestContextManager - @TestExecutionListeners is not present for class [class org.jpatest.domain.DBTest]: using defaults.
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/spring/applicationContext.xml]
+INFO main org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 15:18:58 PST 2010]; root of context hierarchy
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\database.properties]
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\log4j.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO main org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO main org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.4.0.GA
+INFO main org.hibernate.cfg.Environment - Hibernate 3.3.0.SP1
+INFO main org.hibernate.cfg.Environment - hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+INFO main org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.1.0.GA
+INFO main org.hibernate.ejb.Version - Hibernate EntityManager 3.4.0.GA
+INFO main org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: persistenceUnit
+	...]
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Schedule
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Schedule on table Schedule
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Proposal
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Proposal on table Proposal
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Company
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Company on table Company
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Proposal.schedules -> Schedule
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Company.proposals -> Proposal
+INFO main org.hibernate.cfg.AnnotationConfiguration - Hibernate Validator not found: ignoring
+INFO main org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+INFO main org.hibernate.connection.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+INFO main org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider - Using provided datasource
+INFO main org.hibernate.cfg.SettingsFactory - RDBMS: PostgreSQL, version: 8.4.2
+INFO main org.hibernate.cfg.SettingsFactory - JDBC driver: PostgreSQL Native Driver, version: PostgreSQL 8.3 JDBC4 with SSL (build 604)
+INFO main org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.PostgreSQLDialect
+INFO main org.hibernate.transaction.TransactionFactoryFactory - Transaction strategy: org.hibernate.transaction.JDBCTransactionFactory
+INFO main org.hibernate.transaction.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+INFO main org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+INFO main org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+INFO main org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+INFO main org.hibernate.hql.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+INFO main org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+INFO main org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Query cache: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+INFO main org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+INFO main org.hibernate.cfg.SettingsFactory - Statistics: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+INFO main org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+INFO main org.hibernate.impl.SessionFactoryImpl - building session factory
+INFO main org.hibernate.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+INFO Thread-2 org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@1ee3914: startup date [Sat Mar 06 15:18:58 PST 2010]; root of context hierarchy
+INFO Thread-2 org.springframework.beans.factory.support.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1cffeb4: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO Thread-2 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO Thread-2 org.hibernate.impl.SessionFactoryImpl - closing
+INFO main org.springframework.test.context.TestContextManager - @TestExecutionListeners is not present for class [class org.jpatest.domain.DBTest]: using defaults.
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [META-INF/spring/applicationContext.xml]
+INFO main org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@34a1fc: startup date [Sat Mar 06 16:00:59 PST 2010]; root of context hierarchy
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\database.properties]
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from file [C:\fractech\ariss\jpatest\target\classes\META-INF\spring\log4j.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1c50507: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO main org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO main org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.4.0.GA
+INFO main org.hibernate.cfg.Environment - Hibernate 3.3.0.SP1
+INFO main org.hibernate.cfg.Environment - hibernate.properties not found
+INFO main org.hibernate.cfg.Environment - Bytecode provider name : javassist
+INFO main org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+INFO main org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.1.0.GA
+INFO main org.hibernate.ejb.Version - Hibernate EntityManager 3.4.0.GA
+INFO main org.hibernate.ejb.Ejb3Configuration - Processing PersistenceUnitInfo [
+	name: persistenceUnit
+	...]
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Schedule
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Schedule on table Schedule
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Proposal
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Proposal on table Proposal
+INFO main org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: org.jpatest.domain.Company
+INFO main org.hibernate.cfg.annotations.EntityBinder - Bind entity org.jpatest.domain.Company on table Company
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Proposal.schedules -> Schedule
+INFO main org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: org.jpatest.domain.Company.proposals -> Proposal
+INFO main org.hibernate.cfg.AnnotationConfiguration - Hibernate Validator not found: ignoring
+INFO main org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+INFO main org.hibernate.connection.ConnectionProviderFactory - Initializing connection provider: org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider
+INFO main org.hibernate.ejb.connection.InjectedDataSourceConnectionProvider - Using provided datasource
+INFO main org.hibernate.cfg.SettingsFactory - RDBMS: PostgreSQL, version: 8.4.2
+INFO main org.hibernate.cfg.SettingsFactory - JDBC driver: PostgreSQL Native Driver, version: PostgreSQL 8.3 JDBC4 with SSL (build 604)
+INFO main org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.PostgreSQLDialect
+INFO main org.hibernate.transaction.TransactionFactoryFactory - Transaction strategy: org.hibernate.transaction.JDBCTransactionFactory
+INFO main org.hibernate.transaction.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+INFO main org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+INFO main org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+INFO main org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): disabled
+INFO main org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+INFO main org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+INFO main org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+INFO main org.hibernate.hql.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+INFO main org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+INFO main org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+INFO main org.hibernate.cfg.SettingsFactory - Query cache: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+INFO main org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+INFO main org.hibernate.cfg.SettingsFactory - Statistics: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+INFO main org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+INFO main org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+INFO main org.hibernate.impl.SessionFactoryImpl - building session factory
+INFO main org.hibernate.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Began transaction (1): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@8698fa]; rollback [true]
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Rolled back transaction after test execution for test context [[TestContext@1e8fa70 testClass = DBTest, locations = array<String>['classpath:/META-INF/spring/applicationContext.xml'], testInstance = org.jpatest.domain.DBTest@91f0de, testMethod = testFindAllProposals@DBTest, testException = [null]]]
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Began transaction (2): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@8698fa]; rollback [true]
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Rolled back transaction after test execution for test context [[TestContext@1e8fa70 testClass = DBTest, locations = array<String>['classpath:/META-INF/spring/applicationContext.xml'], testInstance = org.jpatest.domain.DBTest@ef9f84, testMethod = testUpdateProposal@DBTest, testException = [null]]]
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Began transaction (3): transaction manager [org.springframework.orm.jpa.JpaTransactionManager@8698fa]; rollback [true]
+WARN main org.hibernate.util.JDBCExceptionReporter - SQL Error: 0, SQLState: 42P01
+ERROR main org.hibernate.util.JDBCExceptionReporter - ERROR: relation "hibernate_sequence" does not exist
+INFO main org.springframework.test.context.transaction.TransactionalTestExecutionListener - Rolled back transaction after test execution for test context [[TestContext@1e8fa70 testClass = DBTest, locations = array<String>['classpath:/META-INF/spring/applicationContext.xml'], testInstance = org.jpatest.domain.DBTest@f2c96c, testMethod = testAddProposal@DBTest, testException = org.springframework.orm.jpa.JpaSystemException: org.hibernate.exception.SQLGrammarException: could not get next sequence value; nested exception is javax.persistence.PersistenceException: org.hibernate.exception.SQLGrammarException: could not get next sequence value]]
+INFO Thread-2 org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@34a1fc: startup date [Sat Mar 06 16:00:59 PST 2010]; root of context hierarchy
+INFO Thread-2 org.springframework.beans.factory.support.DefaultListableBeanFactory - Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1c50507: defining beans [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,org.springframework.context.config.internalBeanConfigurerAspect,companyDataOnDemand,proposalDataOnDemand,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalPersistenceAnnotationProcessor,dataSource,transactionManager,org.springframework.transaction.config.internalTransactionAspect,entityManagerFactory]; root of factory hierarchy
+INFO Thread-2 org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'persistenceUnit'
+INFO Thread-2 org.hibernate.impl.SessionFactoryImpl - closing

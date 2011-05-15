@@ -1,0 +1,33 @@
+DROP TABLE Company CASCADE;
+DROP TABLE Proposal CASCADE;
+DROP TABLE Schedule CASCADE;
+DROP SEQUENCE company_id_seq CASCADE;
+DROP SEQUENCE proposal_id_seq CASCADE;
+DROP SEQUENCE schedule_id_seq CASCADE;
+
+CREATE SEQUENCE company_id_seq
+	START WITH 1;
+CREATE SEQUENCE proposal_id_seq 
+	START WITH 1;
+CREATE SEQUENCE schedule_id_seq 
+	START WITH 1;
+	
+CREATE TABLE Company (
+	id							bigint PRIMARY KEY DEFAULT nextval('company_id_seq'),
+	name					varchar(128) NOT NULL CHECK (name <> '')
+);
+
+CREATE TABLE Proposal (
+	id							bigint PRIMARY KEY DEFAULT nextval('proposal_id_seq'),
+	number			varchar(128) NOT NULL CHECK (number <> ''),
+	company_id		bigint NOT NULL REFERENCES Company(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Schedule (
+	id							bigint PRIMARY KEY DEFAULT nextval('schedule_id_seq'),
+	name					varchar(128) NOT NULL CHECK (name <> ''),
+	proposal_id			bigint NOT NULL REFERENCES Proposal(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+	
+
