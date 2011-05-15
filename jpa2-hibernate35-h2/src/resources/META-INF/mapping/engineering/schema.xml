@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm 
+						http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+						
+	<entity class="model.Schema">
+		
+		<table name="SchemaChannels" />
+		
+		<attributes>
+			<id name="sequence">
+				<column name="snapshotSequence" insertable="false" />
+			</id>				
+			<id name="channelId">
+				<column name="channelId" insertable="false" />
+			</id>
+			<id name="majorStageExecutionId">
+				<column name="majorStageExecutionId" insertable="false" />
+			</id>
+			
+			<many-to-one name="stageExecution" fetch="LAZY">
+				<join-column name="majorStageExecutionId" />
+			</many-to-one>
+			
+			<one-to-many name="channelDefinitions" >
+				<join-column name="channelId" />
+			</one-to-many>			
+			
+		</attributes>
+	</entity>		
+					
+</entity-mappings>

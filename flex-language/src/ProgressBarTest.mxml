@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+		
+	<fx:Declarations>
+		<fx:Array id="arr">
+			<fx:Object label="{ProgressBarDirection.LEFT}" />
+			<fx:Object label="{ProgressBarDirection.RIGHT}" />
+		</fx:Array>
+		
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+		import mx.events.SliderEvent;
+		import mx.controls.ProgressBarDirection;
+		
+		private function slider_change(evt:SliderEvent):void {
+		progressBar.setProgress(slider.value, slider.maximum);
+		}
+		]]>
+	</fx:Script>
+		
+		
+	<mx:ApplicationControlBar dock="true">
+		<mx:Form>
+			<mx:FormItem label="direction:">
+				<mx:ComboBox id="comboBox"
+							 dataProvider="{arr}"
+							 selectedIndex="1" />
+			</mx:FormItem>
+			<mx:FormItem label="value:"
+						 direction="horizontal">
+				<mx:HSlider id="slider"
+							minimum="0"
+							maximum="100"
+							liveDragging="true"
+							change="slider_change(event);"
+							dataTipPrecision="0"
+							snapInterval="1"
+							tickInterval="10" />
+				<mx:Label text="{slider.value}" />
+			</mx:FormItem>
+		</mx:Form>
+	</mx:ApplicationControlBar>
+	
+	<mx:ProgressBar id="progressBar"
+					mode="manual"
+					direction="{comboBox.selectedItem.label}" />
+		
+</s:Application>

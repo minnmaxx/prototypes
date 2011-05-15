@@ -1,0 +1,16 @@
+<broker brokerName="broker" enableStatistics="false" persistent="false" useJmx="false" useShutdownHook="true"
+  	xmlns="http://activemq.apache.org/schema/core" 
+  	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  	xsi:schemaLocation="http://activemq.apache.org/schema/core 
+  						http://activemq.apache.org/schema/core/activemq-core.xsd">
+  	
+  
+	<!-- The transport connectors ActiveMQ will listen to -->
+	<transportConnectors>
+		<transportConnector uri="stomp://127.0.0.1:60002" />
+		<transportConnector uri="tcp://127.0.0.1:60001" />
+		<transportConnector uri="vm://broker" />
+	</transportConnectors>
+
+</broker>
+

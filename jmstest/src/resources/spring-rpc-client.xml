@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  
+	<bean id="activemqConnectionFactory"
+ 		  class="org.apache.activemq.ActiveMQConnectionFactory"
+ 		  p:brokerURL="tcp://127.0.0.1:60001" />
+ 
+	<bean id="queue1" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="TelemetryServiceRpc"/>
+    </bean>
+	
+	<bean id="queue2" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="TelemetryServiceRpc"/>
+    </bean>
+
+  	<bean id="service1"
+          class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
+          p:serviceInterface="rpc.INameService"
+          p:connectionFactory-ref="jmsConnectionFactory"
+          p:queue-ref="queue1" />
+
+  	<bean id="service2"
+          class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
+          p:serviceInterface="rpc.INameService"
+          p:connectionFactory-ref="jmsConnectionFactory"
+          p:queue-ref="queue2" />
+
+</beans>
+

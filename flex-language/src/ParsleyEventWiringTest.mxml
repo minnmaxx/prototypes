@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:parsley="http://www.spicefactory.org/parsley"
+			   minWidth="955" minHeight="600"
+			   
+>
+	<fx:Declarations>
+		<parsley:Configure />
+		
+		<parsley:ContextBuilder>
+			<parsley:FlexConfig type="{ParsleyEventWiringTestContext}" />
+		</parsley:ContextBuilder>
+		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import domain.GlobalListener;
+			import domain.GlobalSender;
+			import domain.InstanceListener;
+			import domain.InstanceSender;
+			
+			import org.spicefactory.parsley.core.context.Context;
+			import org.spicefactory.parsley.core.context.impl.DefaultContext;
+			
+			[Inject]
+			public var context:Context;
+			
+			[Bindable]
+			[Inject]
+			public var instanceSender:InstanceSender;
+			
+			[Bindable]
+			[Inject]
+			public var instanceListener:InstanceListener;
+			
+			[Inject]
+			public var globalSender:GlobalSender;
+			
+			[Inject]
+			[Bindable]
+			public var globalListener:GlobalListener;
+			
+			[Bindable]
+			private var status:String;
+			
+			[Init]
+			public function init():void {
+//				instanceSender = InstanceSender( context.getObjectByType( InstanceSender ) );
+//				instanceListener = InstanceListener( context.getObjectByType( InstanceListener ) );
+
+			}
+			
+			private function reset():void {
+				globalListener.result = "";
+				instanceListener.result = "";
+			}
+			
+			private function instanceGlobal():void {
+				
+				reset();
+				
+				globalListener.result = "Waiting for instance...";
+				instanceSender.toGlobal( message.text );				
+			}
+
+			private function globalGlobal():void {
+				
+				reset();
+				
+				globalListener.result = "Waiting for global...";
+				globalSender.toGlobal( message.text );
+			}
+			
+			private function globalInstance():void {
+				
+				reset();
+				
+				instanceListener.result = "Waiting for global...";
+				globalSender.toInstance( message.text );
+			}
+			
+			private function instanceInstance():void {
+				
+				reset();
+				
+				instanceListener.result = "Waiting for instance...";
+				instanceSender.toInstance( message.text );
+			}			
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:Panel width="100%" height="100%">
+		<s:VGroup width="100%" height="100%">
+			<s:TextInput id="message" text="hello" />
+			<s:Button label="Test Global to Global" click="globalGlobal()" />	
+			<s:Button label="Test Instance to Global" click="instanceGlobal()" />	
+			<s:Button label="Test Global to Instance" click="globalInstance()" />	
+			<s:Button label="Test Instance to Instance" click="instanceInstance()" />
+			<s:HGroup>
+				<s:Label text="Global"  />
+				<s:Label text="{globalListener.result}"  />				
+			</s:HGroup>
+			<s:HGroup>
+				<s:Label text="Instance"  />
+				<s:Label text="{instanceListener.result}"  />				
+			</s:HGroup>
+			<s:Label text="{status}" />
+		</s:VGroup>		
+	</s:Panel>
+	
+</s:Application>

@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="5" skipfailedinvocationCounts="false" verbose="1" name="Failed suite [jpa2-hibernate35-h2]" junit="false" parallel="false" annotations="JDK" data-provider-thread-count="10">
+  <test name="dao.ChannelDefinitionTest(failed)" junit="false" parallel="false" annotations="JDK">
+    <classes>
+      <class name="dao.ChannelDefinitionTest">
+        <methods>
+          <include name="springTestContextAfterTestMethod"/>
+          <include name="springTestContextAfterTestClass"/>
+          <include name="springTestContextBeforeTestClass"/>
+          <include name="springTestContextPrepareTestInstance"/>
+          <include name="addSchema"/>
+          <include name="addMajorStageExecution"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+</suite>

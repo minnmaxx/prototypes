@@ -1,0 +1,321 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TestNG:  Unit Test</title>
+<style type="text/css">
+table caption,table.info_table,table.param,table.passed,table.failed {margin-bottom:10px;border:1px solid #000099;border-collapse:collapse;empty-cells:show;}
+table.info_table td,table.info_table th,table.param td,table.param th,table.passed td,table.passed th,table.failed td,table.failed th {
+border:1px solid #000099;padding:.25em .5em .25em .5em
+}
+table.param th {vertical-align:bottom}
+td.numi,th.numi,td.numi_attn {
+text-align:right
+}
+tr.total td {font-weight:bold}
+table caption {
+text-align:center;font-weight:bold;
+}
+table.passed tr.stripe td,table tr.passedodd td {background-color: #00AA00;}
+table.passed td,table tr.passedeven td {background-color: #33FF33;}
+table.passed tr.stripe td,table tr.skippedodd td {background-color: #cccccc;}
+table.passed td,table tr.skippedodd td {background-color: #dddddd;}
+table.failed tr.stripe td,table tr.failedodd td,table.param td.numi_attn {background-color: #FF3333;}
+table.failed td,table tr.failedeven td,table.param tr.stripe td.numi_attn {background-color: #DD0000;}
+tr.stripe td,tr.stripe th {background-color: #E6EBF9;}
+p.totop {font-size:85%;text-align:center;border-bottom:2px black solid}
+div.shootout {padding:2em;border:3px #4854A8 solid}
+</style>
+</head>
+<body>
+<table cellspacing=0 cellpadding=0 class="param">
+<tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
+<tr><td style="text-align:left;padding-right:2em">dao.ChannelDefinitionTest</td><td class="numi">0</td><td class="numi">0</td><td class="numi_attn">2</td><td class="numi">0</td><td class="numi">2.2 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+</table>
+<a id="summary"></a>
+<table cellspacing=0 cellpadding=0 class="passed">
+<tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Time<br/>(Msecs)</th></tr>
+<tr><th colspan="4">dao.ChannelDefinitionTest &#8212; failed (configuration methods)</th></tr>
+<tr class="failedodd"><td rowspan="1">dao.ChannelDefinitionTest<br>"dao.ChannelDefinitionTest"<td><a href="#m1"><b>springTestContextPrepareTestInstance</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr><th colspan="4">dao.ChannelDefinitionTest &#8212; skipped (configuration methods)</th></tr>
+<tr class="skippedodd"><td rowspan="1">dao.ChannelDefinitionTest<br>"dao.ChannelDefinitionTest"<td><a href="#m2"><b>springTestContextBeforeTestMethod</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+<tr><th colspan="4">dao.ChannelDefinitionTest &#8212; skipped</th></tr>
+<tr class="skippedodd"><td rowspan="2">dao.ChannelDefinitionTest<br>"dao.ChannelDefinitionTest"<td><a href="#m3"><b>addMajorStageExecution</b>  </a></td><td class="numi">1</td><td class="numi">1</td></tr><tr class="skippedodd"><td><a href="#m4"><b>addSchema</b>  </a></td><td class="numi">1</td><td class="numi">0</td></tr>
+</table>
+<h1>dao.ChannelDefinitionTest</h1>
+<a id="m1"></a><h2>dao.ChannelDefinitionTest:springTestContextPrepareTestInstance</h2>
+<div style="padding-left:3em">
+<p>Failed to load ApplicationContext</p>
+org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:308)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:333)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:446)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:162)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:92)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:183)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:115)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:953)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:633)
+<br/>at org.testng.TestRunner.run(TestRunner.java:505)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:316)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:195)
+<br/>at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:903)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:872)
+<br/>at org.testng.TestNG.run(TestNG.java:780)
+<br/>at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:75)
+<br/>at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:127)
+<br/>1 lines not shown
+<p>Caused by Error creating bean with name 'transactionManager' defined in class path resource [META-INF/spring/persistence-context.xml]: Cannot resolve reference to bean 'entityManagerFactory' while setting bean property 'entityManagerFactory'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [META-INF/spring/persistence-context.xml]: Invocation of init method failed; nested exception is org.hibernate.MappingException: invalid mapping: META-INF/mapping/engineering/channelDefinition.xml</p>
+org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:328)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:106)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1305)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1067)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:557)
+<br/>at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:842)
+<br/>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:416)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
+<br/>at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
+<br/>at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:333)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:446)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:162)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:92)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:183)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:115)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:953)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:633)
+<br/>at org.testng.TestRunner.run(TestRunner.java:505)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:316)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:195)
+<br/>at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:903)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:872)
+<br/>at org.testng.TestNG.run(TestNG.java:780)
+<br/>at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:75)
+<br/>at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:127)
+<br/>1 lines not shown
+<p>Caused by Error creating bean with name 'entityManagerFactory' defined in class path resource [META-INF/spring/persistence-context.xml]: Invocation of init method failed; nested exception is org.hibernate.MappingException: invalid mapping: META-INF/mapping/engineering/channelDefinition.xml</p>
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1401)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:512)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:322)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:106)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1305)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1067)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:557)
+<br/>at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:842)
+<br/>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:416)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
+<br/>at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
+<br/>at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:333)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:446)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:162)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:92)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:183)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:115)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:953)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:633)
+<br/>at org.testng.TestRunner.run(TestRunner.java:505)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:316)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:195)
+<br/>at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:903)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:872)
+<br/>at org.testng.TestNG.run(TestNG.java:780)
+<br/>at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:75)
+<br/>at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:127)
+<br/>1 lines not shown
+<p>Caused by invalid mapping: META-INF/mapping/engineering/channelDefinition.xml</p>
+org.hibernate.ejb.Ejb3Configuration.addXMLEntities(Ejb3Configuration.java:722)
+<br/>at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:597)
+<br/>at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:73)
+<br/>at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
+<br/>at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1460)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1398)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:512)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:322)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:106)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1305)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1067)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:557)
+<br/>at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:842)
+<br/>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:416)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
+<br/>at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
+<br/>at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:333)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:446)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:162)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:92)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:183)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:115)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:953)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:633)
+<br/>at org.testng.TestRunner.run(TestRunner.java:505)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:316)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:195)
+<br/>at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:903)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:872)
+<br/>at org.testng.TestNG.run(TestNG.java:780)
+<br/>at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:75)
+<br/>at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:127)
+<br/>1 lines not shown
+<p>Caused by cvc-complex-type.3.1: Value '2.0' of attribute 'version' of element 'entity-mappings' is not valid with respect to the corresponding attribute use. Attribute 'version' has a fixed value of '1.0'.</p>
+com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+<br/>at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:131)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:384)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:318)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:410)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3165)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processOneAttribute(XMLSchemaValidator.java:2773)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processAttributes(XMLSchemaValidator.java:2685)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:2037)
+<br/>at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:685)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:400)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl$NSContentDriver.scanRootElementHook(XMLNSDocumentScannerImpl.java:626)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:3095)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:922)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:648)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:140)
+<br/>at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:510)
+<br/>at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:807)
+<br/>at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:737)
+<br/>at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:107)
+<br/>at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1205)
+<br/>at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:522)
+<br/>at org.dom4j.io.SAXReader.read(SAXReader.java:465)
+<br/>at org.dom4j.io.SAXReader.read(SAXReader.java:343)
+<br/>at org.hibernate.ejb.Ejb3Configuration.addXMLEntities(Ejb3Configuration.java:720)
+<br/>at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:597)
+<br/>at org.hibernate.ejb.HibernatePersistence.createContainerEntityManagerFactory(HibernatePersistence.java:73)
+<br/>at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:225)
+<br/>at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:308)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1460)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1398)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:512)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:322)
+<br/>at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:106)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1305)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1067)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:511)
+<br/>at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:450)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:290)
+<br/>at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:287)
+<br/>at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:189)
+<br/>at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:557)
+<br/>at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:842)
+<br/>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:416)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:84)
+<br/>at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:1)
+<br/>at org.springframework.test.context.TestContext.loadApplicationContext(TestContext.java:280)
+<br/>at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:304)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109)
+<br/>at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75)
+<br/>at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:333)
+<br/>at org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextPrepareTestInstance(AbstractTestNGSpringContextTests.java:133)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+<br/>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+<br/>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+<br/>at java.lang.reflect.Method.invoke(Method.java:597)
+<br/>at org.testng.internal.MethodHelper.invokeMethod(MethodHelper.java:643)
+<br/>at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:446)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:162)
+<br/>at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:92)
+<br/>at org.testng.internal.TestMethodWorker.invokeBeforeClassMethods(TestMethodWorker.java:183)
+<br/>at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:115)
+<br/>at org.testng.TestRunner.runWorkers(TestRunner.java:953)
+<br/>at org.testng.TestRunner.privateRun(TestRunner.java:633)
+<br/>at org.testng.TestRunner.run(TestRunner.java:505)
+<br/>at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+<br/>at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+<br/>at org.testng.SuiteRunner.privateRun(SuiteRunner.java:316)
+<br/>at org.testng.SuiteRunner.run(SuiteRunner.java:195)
+<br/>at org.testng.TestNG.createAndRunSuiteRunners(TestNG.java:903)
+<br/>at org.testng.TestNG.runSuitesLocally(TestNG.java:872)
+<br/>at org.testng.TestNG.run(TestNG.java:780)
+<br/>at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:75)
+<br/>at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:127)
+<br/>1 lines not shown
+</div>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m2"></a><h2>dao.ChannelDefinitionTest:springTestContextBeforeTestMethod</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m3"></a><h2>dao.ChannelDefinitionTest:addMajorStageExecution</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m4"></a><h2>dao.ChannelDefinitionTest:addSchema</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+</body></html>

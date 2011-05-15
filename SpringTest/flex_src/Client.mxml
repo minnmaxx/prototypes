@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" applicationComplete="setupChannelSet()">
+	
+	
+	<mx:RemoteObject id="userService" destination="userService">
+		<mx:channelSet>
+			<mx:ChannelSet>
+				<mx:channels>
+					<mx:AMFChannel
+						uri="http://localhost:8080/SpringTest/community/amflogin" />
+				</mx:channels>
+			</mx:ChannelSet>
+		</mx:channelSet>
+	</mx:RemoteObject>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.messaging.Channel;
+			import mx.messaging.ChannelSet;
+			import mx.messaging.Consumer;
+			import mx.messaging.Producer;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.messaging.events.MessageAckEvent;
+			import mx.messaging.events.MessageEvent;
+			import mx.messaging.events.MessageFaultEvent;
+			import mx.messaging.messages.AsyncMessage;
+			import mx.messaging.messages.IMessage;
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.*;
+			
+			import vos.*;
+			
+			//--------------------------------------------------------------------------
+			// ChannelSet
+			//--------------------------------------------------------------------------
+			[Bindable]
+			private var cs:ChannelSet;
+			[Bindable]
+			private var defaultChannelAddress:String =
+				"http://localhost:8080/SpringTest/community/streamingamflogin";
+			private function setupChannelSet():void
+			{
+				cs = new ChannelSet();
+				
+				var channel:Channel;
+				
+				channel = new StreamingAMFChannel(null, defaultChannelAddress );
+				
+				cs.addChannel( channel );
+				
+				//subscribe();
+				
+				Alert.show( "ChannelSet authenticated = " + cs.authenticated );
+				
+				getUser();
+			}
+			
+			//--------------------------------------------------------------------------
+			// RPC
+			//--------------------------------------------------------------------------
+			[Bindable]
+			private var user:FractechUser;
+			
+			private function getUser():void
+			{	
+				// this is not a synchroneous call, it is async, therefore the return is a async token
+				var token:AsyncToken = userService.getUser();
+				token.addResponder( new AsyncResponder( getUserResult, getUserFault) );
+			}
+			
+			protected function getUserResult(event:ResultEvent, token:Object = null):void
+			{
+				log.text += "RPC Result---------------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end-----------------------------\n";
+				
+				user = FractechUser( event.result );	
+				subscribe();
+			}
+			
+			protected function getUserFault(event:FaultEvent, token:Object = null):void
+			{
+				log.text += "RPC Fault---------------------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end----------------------------------\n";
+				
+				Alert.show( "Unauthorized User, Please Login." );
+				
+				// call the logout jsp
+				var url:String = "http://localhost:8080/SpringTest/login.jsp";
+				var loginRequest:URLRequest = new URLRequest( url );
+				loginRequest.method = URLRequestMethod.GET;
+				
+				navigateToURL( loginRequest, "_self" );
+				
+			}
+			
+//			//--------------------------------------------------------------------------
+//			// Login 
+//			//--------------------------------------------------------------------------
+//			// Define an AsyncToken object.
+//			private var token:AsyncToken;
+//			private function login():void
+//			{				
+//				//subscribe();
+//				if (cs.authenticated == false) {
+//					token = cs.login( username.text, password.text );
+//					// Add result and fault handlers.
+//					token.addResponder(new AsyncResponder(LoginResultEvent, LoginFaultEvent));					
+//				}
+//			}
+//			
+//			// Handle successful login.
+//			private function LoginResultEvent(event:ResultEvent, token:Object=null):void 
+//			{
+//				subscribe();
+//				log.text += "login succeeded\n";					
+//			}
+//			
+//			// Handle login failure.
+//			private function LoginFaultEvent(event:FaultEvent, token:Object=null):void 
+//			{
+//				log.text += "login failed: " + event.message + "\n";
+//			}	
+			
+			//--------------------------------------------------------------------------
+			// Logout
+			//--------------------------------------------------------------------------
+			
+			// Logout and handle success or failure.
+			private function logout():void 
+			{	
+				// call the logout jsp
+				var url:String = "http://localhost:8080/SpringTest/j_spring_security_logout";
+				var logoutRequest:URLRequest = new URLRequest( url );
+				logoutRequest.method = URLRequestMethod.POST;
+				
+				navigateToURL( logoutRequest, "_self" );
+								
+//				// Add result and fault handlers.
+//				token = cs.logout();
+//				token.addResponder(new AsyncResponder(LogoutResultEvent,LogoutFaultEvent));
+			}
+			
+//			// Handle successful logout.
+//			private function LogoutResultEvent(event:ResultEvent, token:Object=null):void {
+//				log.text += "logout succeeded\n";
+//			}	
+//			// Handle logout failure.
+//			private function LogoutFaultEvent(event:FaultEvent, token:Object=null):void {
+//				log.text += "logout failed\n";
+//			}						
+			
+			//--------------------------------------------------------------------------
+			// Setup consumer/produce for destinations
+			//--------------------------------------------------------------------------	
+			
+			private var producerChat:Producer;
+			private var consumerChat:Consumer;
+			private var producerGame:Producer;
+			private var consumerGame:Consumer;			
+			
+			
+			private function subscribe():void
+			{
+				// chat destination
+				producerChat = new Producer();
+				consumerChat = new Consumer();
+				setupConsumerProducer( producerChat, consumerChat, "chat", chatMessageHandler );
+				
+				if( !consumerChat.subscribed ) consumerChat.subscribe();
+				
+				// game destination
+				producerGame = new Producer();
+				consumerGame = new Consumer();
+				setupConsumerProducer( producerGame, consumerGame, "game", gameMessageHandler );
+				
+				consumerGame.addEventListener(MessageAckEvent.ACKNOWLEDGE, subscribeAckHandler);
+				if( !consumerGame.subscribed ) consumerGame.subscribe();
+				
+			}	
+			
+			private function setupConsumerProducer( 
+				producer:Producer, consumer:Consumer, destination:String, messageHandler:Function ):void
+			{				
+				producer.channelSet = cs;
+				producer.destination = destination;
+				producer.addEventListener(MessageAckEvent.ACKNOWLEDGE,ackHandler);
+				producer.addEventListener(MessageFaultEvent.FAULT,messageFaultHandler);
+				
+				consumer.channelSet = cs;
+				consumer.destination = destination;
+				consumer.addEventListener(MessageEvent.MESSAGE, messageHandler);
+				consumer.addEventListener(MessageAckEvent.ACKNOWLEDGE,ackHandler);
+				consumer.addEventListener(MessageFaultEvent.FAULT,messageFaultHandler);											
+			}
+			
+			private function cleanupConsumerProducer(
+				producer:Producer, consumer:Consumer,messageHandler:Function ):void
+			{
+				producer.removeEventListener(MessageAckEvent.ACKNOWLEDGE,ackHandler);
+				producer.removeEventListener(MessageFaultEvent.FAULT,messageFaultHandler);
+				
+				consumer.removeEventListener(MessageEvent.MESSAGE, messageHandler);
+				consumer.removeEventListener(MessageFaultEvent.FAULT,messageFaultHandler);
+			}
+			
+			private function unsubscribe():void
+			{
+				if( consumerChat != null ) 
+				{
+					cleanupConsumerProducer( producerChat, consumerChat, chatMessageHandler );
+					
+					if( consumerChat.subscribed )
+					{
+						consumerChat.unsubscribe();
+					}
+				}
+				if( consumerGame != null )
+				{
+					cleanupConsumerProducer( producerGame, consumerGame, gameMessageHandler );
+					consumerGame.addEventListener(MessageAckEvent.ACKNOWLEDGE,unsubscribeAckHandler);
+					
+					if( consumerGame.subscribed )
+					{
+						consumerGame.unsubscribe();
+					}			
+				}	
+				
+			}
+						
+			private function ackHandler( event:MessageAckEvent ):void
+			{
+				log.text += "Ack----------------------------------\n";
+				log.text += event.message.headers + "\n";
+				log.text += "-----end-----------------------------\n";
+			}
+			
+			private function subscribeAckHandler( event:MessageAckEvent ):void
+			{
+				log.text += "subscribeAck-------------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end-----------------------------\n";
+				
+				consumerGame.removeEventListener(MessageAckEvent.ACKNOWLEDGE,subscribeAckHandler);
+				
+				var sub:SubscriptionMessageVO = new SubscriptionMessageVO();
+				sub.type = SubscriptionMessageVO.TYPE_SUBSCRIBE;
+				
+				send( producerGame, sub );							
+			}
+			
+			private function unsubscribeAckHandler( event:MessageAckEvent ):void
+			{
+				log.text += "unsubscribeAck-----------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end-----------------------------\n";	
+				
+				cs.disconnectAll();
+								
+				consumerGame.removeEventListener(MessageAckEvent.ACKNOWLEDGE,unsubscribeAckHandler);
+				
+				logout();
+			}
+			
+			private function messageFaultHandler( event:MessageFaultEvent ):void
+			{
+				log.text += "MsgFault----------------------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end----------------------------------\n";
+			}
+
+			
+			//--------------------------------------------------------------------------
+			// Chat
+			//--------------------------------------------------------------------------			
+			private function sendChatMessage( ):void
+			{
+				var message:ChatMessageVO = new ChatMessageVO();
+				message.fromId = user.username;
+				message.content = chatMessage.text;
+				
+				send( producerChat, message );
+				
+				callLater(clearChatInput);
+			}
+			
+			private function clearChatInput():void
+			{
+				chatMessage.text = "";	
+			}
+			
+			private function chatMessageHandler(event:MessageEvent):void
+			{
+				log.text += "Received a CHAT message:" + event + "\n";
+				if( event.message.body is ChatMessageVO )
+				{
+					var m:ChatMessageVO = ChatMessageVO( event.message.body );
+					chatHistory.text += m + "\n";
+				}
+				else
+				{
+					log.text += ">>>>UnknownBodyType\n";					
+				}
+			}
+			
+			//--------------------------------------------------------------------------
+			// Game functions
+			//--------------------------------------------------------------------------						
+			[Bindable]
+			private var clientList:ClientListMessageVO;													
+			[Bindable]
+			private var gameOngoing:Boolean = false;			
+			[Bindable]
+			private var gameAccepted:Boolean = false;			
+			private var selectedOpponent:String;
+			
+			private function gameMessageHandler(event:MessageEvent):void
+			{
+				log.text += "Received a GAME message:";
+				log.text += event.message.body;
+				log.text += "\n";
+				
+				if( event.message.body is ClientListMessageVO )
+				{
+					clientList = ClientListMessageVO(event.message.body);
+				} 
+				else if( event.message.body is GameMessageVO )
+				{
+					var inMessage:GameMessageVO = GameMessageVO(event.message.body);
+					
+					switch( inMessage.type ) 
+					{
+						case GameMessageVO.TYPE_INITIATE_CHALLENGE:
+							
+							var outMessage:GameMessageVO = new GameMessageVO();
+							outMessage.fromId = inMessage.toId;
+							outMessage.toId = inMessage.fromId;
+							if( gameOngoing )
+							{
+								outMessage.type = GameMessageVO.TYPE_DECLINE_CHALLENGE;
+							}
+							else
+							{
+								outMessage.type = GameMessageVO.TYPE_ACCEPT_CHALLENGE;
+								gameAccepted = true;
+								gameOngoing = true;
+								selectedOpponent = inMessage.fromId;
+								gameStatus.text = "Accepted a challenge from " + selectedOpponent;
+							}
+							send( producerGame, outMessage );
+							break;
+						
+						case GameMessageVO.TYPE_ACCEPT_CHALLENGE:
+							
+							gameStatus.text = selectedOpponent + " accepted the challenge\n";						
+							gameAccepted = true;											
+							break;
+						
+						case GameMessageVO.TYPE_DECLINE_CHALLENGE:
+							
+							gameStatus.text = selectedOpponent + " declined the challenge\n";
+							gameCleanup();						
+							break;
+						
+						case GameMessageVO.TYPE_RESULT:
+							
+							displayGameResult( inMessage );
+							gameCleanup();
+							break;
+						
+						default:			
+							log.text += ">>>>Unexpected game message type: " + inMessage + "\n";			
+					}
+				}			
+				else
+				{
+					log.text += ">>>>UnknownBodyType\n";					
+				}				
+			}
+			
+			private function displayGameResult(message:GameMessageVO):void
+			{ 
+				var arr:Array = message.payLoad.split(":");
+				
+				//format: won/lost:opponentPick
+				gameStatus.text = selectedOpponent + " picked " + arr[1] 
+					+ ", and you " + String(arr[0]).toLocaleLowerCase() + " the game.";
+			}
+			
+			private function gameCleanup():void
+			{
+				gameAccepted = false;
+				gameOngoing = false;
+				selectedOpponent = "";				
+			}
+			
+			private function play():void
+			{
+				var message:GameMessageVO = new GameMessageVO();
+				//message.fromId = username.text;
+				message.toId = selectedOpponent;
+				message.payLoad = String(gamePlay.selectedValue);
+				message.type = GameMessageVO.TYPE_SELECTED_ITEM;
+				
+				send( producerGame, message );
+				
+				gameStatus.text = "Sending " + gamePlay.selectedValue + " to meet with " + selectedOpponent + "'s pick";		
+			}
+			
+			private function challenge():void
+			{
+				if( gameOngoing )
+				{
+					Alert.show( "A game is ongoing, please wait for its completion", "Warn" );
+					return;
+				}
+				
+				if( names.selectedItem == null )
+				{
+					Alert.show( "Select a user to challenge", "Warn" );
+					return;
+				}		
+				
+				selectedOpponent = String(names.selectedItem);
+				if( selectedOpponent == user.username )
+				{
+					selectedOpponent = "";
+					Alert.show( "Please select an user other than yourself for a game.", "Warn" );
+					return;
+				}
+				
+				gameOngoing = true;
+				
+				var message:GameMessageVO = new GameMessageVO();
+				//message.fromId = username.text;
+				message.toId = selectedOpponent;
+				message.type = GameMessageVO.TYPE_INITIATE_CHALLENGE;
+				
+				send( producerGame, message );
+				
+				gameStatus.text = "Waiting for " + selectedOpponent + " to accept challenge...";		
+			}
+			
+			//--------------------------------------------------------------------------
+			// Utils
+			//--------------------------------------------------------------------------	
+			private function andFunc( cond1:Boolean, cond2:Boolean ):Boolean
+			{
+				return (cond1 && cond2); 
+			}
+			
+			private function send( producer:Producer, body:Object ):void
+			{
+				var flexMessage:IMessage = new AsyncMessage();
+				flexMessage.body = body;
+				producer.send(flexMessage);
+			}
+			
+			private function clear():void
+			{
+				log.text = "";
+				chatMessage.text = "";
+				chatHistory.text = "";
+				clientList = null;
+				gameStatus.text = "";
+			}
+			
+		]]>
+	</mx:Script>
+
+	
+	<mx:RadioButtonGroup id="gamePlay" 
+						 enabled="{gameOngoing}" />
+	
+	<mx:Panel title="Chat 1.0.7" width="100%" height="100%">
+		
+		<mx:HBox width="100%">
+			<mx:Label text="Welcome" />
+			<mx:Label text="{user.fullname}" />
+			<!-- <mx:Label text="Password" /> -->
+			<!-- <mx:TextInput id="password" text="t" /> -->
+			<!-- <mx:Button label="Login" click="login()" enabled="{!cs.authenticated}" /> -->	
+			<mx:Button label="Logout" click="unsubscribe()" />
+			<!-- <mx:Button label="Subscribe" click="subscribe()" /> -->
+			<!-- <mx:Button label="Unsubscribe" click="unsubscribe()" /> -->
+			<mx:Button label="Clear" click="clear()" />
+		</mx:HBox>
+		
+		<mx:VDividedBox width="100%" height="100%">
+			<mx:VBox id="chatBox" height="50%" width="100%">
+				<mx:TextArea id="chatHistory" width="100%" height="100%"/>	
+				<mx:HBox width="100%">
+					<mx:TextInput id="chatMessage" width="100%" enter="sendChatMessage()"/>
+					<mx:Button label="Send" click="sendChatMessage()"/> 
+				</mx:HBox>
+			</mx:VBox>
+			<mx:HDividedBox id="gameBox" height="50%" width="100%">			
+				<mx:VBox height="80%" width="100%">
+					<mx:HBox height="100%" width="100%">															
+						<mx:VBox id="selectionBox" height="100%" width="75%">					
+							<mx:RadioButton groupName="gamePlay" label="Scissors" value="Scissors" enabled="{gameOngoing}" />
+							<mx:RadioButton groupName="gamePlay" label="Paper" value="Paper" enabled="{gameOngoing}" />	
+							<mx:RadioButton groupName="gamePlay" label="Stone" value="Stone" enabled="{gameOngoing}" />					
+						</mx:VBox>
+						<mx:VBox width="25%" height="100%">
+							<mx:List id="names" width="100%" height="100%" dataProvider="{clientList.clientIds}"
+									 selectedIndex="0" />			
+						</mx:VBox>				
+					</mx:HBox>
+					<mx:HBox width="100%">
+						<mx:Label id="gameStatus" width="100%" height="100%" />	
+					</mx:HBox>					
+					<mx:HBox width="100%">
+						<mx:Button label="Challenge" click="challenge()" enabled="{andFunc(!gameOngoing,!gameAccepted)}"  />
+						<mx:Button label="Play" click="play()" enabled="{gameAccepted}" />
+					</mx:HBox>
+				</mx:VBox>
+			</mx:HDividedBox>				
+		</mx:VDividedBox>
+		
+		<mx:HBox height="30%" width="100%">				
+			<mx:TextArea id="log" width="100%" height="100%"/>
+		</mx:HBox>
+		
+	</mx:Panel>
+	
+</mx:Application>
+

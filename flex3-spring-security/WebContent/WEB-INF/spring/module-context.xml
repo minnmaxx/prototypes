@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init"
+    xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd" >
+ 
+ 	<context:annotation-config />
+ 
+ 	<bean id="gameServer" class="test.ManageableComponentFactoryBean"> 
+			<constructor-arg value="test.GameAdapter"/>
+	</bean>
+		
+	<bean id="userService" class="test.UserService" />
+	
+	<bean id="userDetailsServiceImpl" class="test.UserDetailsServiceImpl" />
+		
+</beans>

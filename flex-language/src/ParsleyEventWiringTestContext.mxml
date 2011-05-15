@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fx:Object xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:parsley="http://www.spicefactory.org/parsley">
+	<fx:Script>
+		<![CDATA[
+			import domain.GlobalListener;
+			import domain.GlobalSender;
+			import domain.InstanceListener;
+			import domain.InstanceSender;
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		
+		
+		
+		<parsley:Object type="{InstanceSender}" singleton="false" />
+		<!--
+			<parsley:ManagedEvents names="['InstanceGlobal','InstanceInstance']" />
+		</parsley:Object>
+		-->
+		<parsley:Object type="{InstanceListener}" singleton="false" />		
+		
+		<parsley:Object type="{GlobalSender}" singleton="true" />
+		
+		<parsley:Object type="{GlobalListener}" singleton="true" />
+		
+	</fx:Declarations>
+</fx:Object>

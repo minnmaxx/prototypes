@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:context="http://www.springframework.org/schema/context" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  	                  http://www.springframework.org/schema/beans/spring-beans.xsd
+  	                  http://www.springframework.org/schema/context 
+	   			      http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:property-placeholder location="classpath:/META-INF/h2.database.properties"
+								  order="10000" ignore-unresolvable="true" />	
+  	
+  	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+  	      init-method="createDataSource"
+  		  destroy-method="close" 
+  	      p:driverClassName="${database.h2.driverClassName}"
+  	      p:url="${database.h2.url}"
+  	      p:username="${database.h2.username}"
+  	      p:password="${database.h2.password}" />
+  	      
+	<bean id="databaseLoader" class="h2.DatabaseLoader" init-method="populate">
+		<constructor-arg>
+			<array>
+				<value>classpath:/sql/CreateTables.sql</value>
+				<value>classpath:/sql/InsertRequiredData.sql</value>
+			</array>
+		</constructor-arg>
+	</bean>   	      
+ 	          
+ </beans>

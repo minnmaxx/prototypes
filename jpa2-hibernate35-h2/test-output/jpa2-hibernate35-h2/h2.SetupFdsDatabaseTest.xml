@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="h2.SetupFdsDatabaseTest" failures="0" tests="1" time="1.407" errors="0">
+  <properties/>
+  <testcase name="testRetrieve" time="0.022" classname="h2.SetupFdsDatabaseTest"/>
+</testsuite>

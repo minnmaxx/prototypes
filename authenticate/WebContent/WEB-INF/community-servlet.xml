@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:flex="http://www.springframework.org/schema/flex"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/flex 
+		http://www.springframework.org/schema/flex/spring-flex-1.0.xsd">
+ 
+ 	<!-- 
+ 	when this is defined, a MessageBrokerHandlerAdapter would be instantiated and
+ 	registered with the application context.
+ 	 -->
+	<flex:message-broker>
+		<!-- this configuration is used in the place of messaging-config.xml -->
+		<flex:message-service default-channels="my-streaming-amf-login" />
+		<flex:secured per-client-authentication="true">			
+			<flex:secured-channel channel="my-streaming-amf-login" access="ROLE_chatclient"/>
+		</flex:secured>
+	</flex:message-broker>
+
+	<!-- Messaging destinations -->
+	 
+	<bean id="gameServer" class="org.springframework.flex.core.ManageableComponentFactoryBean">
+		<constructor-arg value="sps.GameAdapter"/>
+	</bean>
+		
+	<flex:message-destination id="game" channels="my-streaming-amf-login" 
+		service-adapter="gameServer" />
+		
+	<flex:message-destination id="chat" channels="my-streaming-amf-login" /> 	
+		
+</beans>
+

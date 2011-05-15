@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  					  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+  
+	<bean id="nameServiceQueue-Server" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="TelemetryServiceRpc"/>
+    </bean>  
+
+	<bean id="nameServiceQueue-Client" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="TelemetryServiceRpc"/>
+    </bean>  
+
+  
+  	<!-- server -->
+  
+	<bean id="telemetryBroker" class="org.apache.activemq.xbean.BrokerFactoryBean"
+		  p:config="classpath:resources/broker-transports.xml"
+		  p:start="true" />
+
+	<bean id="vmConnectionFactory" depends-on="telemetryBroker"
+ 		  class="org.apache.activemq.ActiveMQConnectionFactory"
+ 		  p:brokerURL="vm://telemetryBroker?create=false" />
+ 		  	
+	<bean id="serverConnectionFactory"
+		  class="org.springframework.jms.connection.SingleConnectionFactory"
+		  p:targetConnectionFactory-ref="vmConnectionFactory"
+		  p:reconnectOnException="true"
+		  />
+
+	<bean id="nameService" class="rpc.NameService" />
+	
+	<bean id="nameServiceInvoker"
+          class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+          p:serviceInterface="rpc.INameService"
+          p:service-ref="nameService" />
+
+  	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer" 
+		  p:connectionFactory-ref="serverConnectionFactory"
+		  p:destination-ref="nameServiceQueue-Server"
+		  p:concurrentConsumers="2"
+		  p:messageListener-ref="nameServiceInvoker"
+		   />		  
+		  
+	<!-- client -->		  
+	
+	<bean id="tcpConnectionFactory" depends-on="telemetryBroker"
+		  class="org.apache.activemq.ActiveMQConnectionFactory"
+		  p:brokerURL="tcp://127.0.0.1:60001" /> 		  
+
+	<bean id="clientConnectionFactory"
+		  class="org.springframework.jms.connection.SingleConnectionFactory"
+		  p:targetConnectionFactory-ref="tcpConnectionFactory"
+		  p:reconnectOnException="true"
+		  />
+		
+  	<bean id="remoteNameService"
+          class="org.springframework.jms.remoting.JmsInvokerProxyFactoryBean"
+          p:serviceInterface="rpc.INameService"
+          p:connectionFactory-ref="clientConnectionFactory"
+          p:queue-ref="nameServiceQueue-Client"
+          p:receiveTimeout="2000" />	
+
+</beans>
+
+

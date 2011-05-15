@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+  xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+  
+	<bean id="telemetryBroker" class="org.apache.activemq.xbean.BrokerFactoryBean"
+		  p:config="classpath:resources/broker-transports.xml"
+		  p:start="true" />
+
+	<bean id="activemqConnectionFactory" depends-on="telemetryBroker"
+ 		  class="org.apache.activemq.ActiveMQConnectionFactory"
+ 		  p:brokerURL="vm://telemetryBroker?create=false" />
+	
+	<bean id="nameService" class="rpc.NameService" />
+	
+	<bean id="nameServiceInvoker"
+          class="org.springframework.jms.remoting.JmsInvokerServiceExporter"
+          p:serviceInterface="rpc.INameService"
+          p:service-ref="nameService" />
+
+  	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer" 
+		  p:connectionFactory-ref="jmsConnectionFactory"
+		  p:destination-ref="nameServiceQueue"
+		  p:concurrentConsumers="3"
+		  p:messageListener-ref="nameServiceInvoker" />
+
+</beans>

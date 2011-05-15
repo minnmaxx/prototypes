@@ -1,0 +1,138 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="jmstest" duration-ms="13071" started-at="2010-07-09T13:37:17Z" finished-at="2010-07-09T13:37:30Z">
+    <groups>
+    </groups>
+    <test name="rpc.RpcTest" duration-ms="13071" started-at="2010-07-09T13:37:17Z" finished-at="2010-07-09T13:37:30Z">
+      <class name="rpc.RpcTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()" name="springTestContextBeforeTestClass" is-config="true" duration-ms="3" started-at="2010-07-09T13:37:17Z" finished-at="2010-07-09T13:37:17Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="2760" started-at="2010-07-09T13:37:17Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass" finished-at="2010-07-09T13:37:20Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="startClient()" name="startClient" duration-ms="8299" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:28Z">
+        </test-method>
+        <test-method status="PASS" signature="startClient()" name="startClient" duration-ms="4254" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:24Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="startClient()" name="startClient" duration-ms="2270" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:22Z">
+        </test-method>
+        <test-method status="PASS" signature="startClient()" name="startClient" duration-ms="10236" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:30Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="startClient()" name="startClient" duration-ms="6243" started-at="2010-07-09T13:37:20Z" finished-at="2010-07-09T13:37:26Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="6" started-at="2010-07-09T13:37:22Z" finished-at="2010-07-09T13:37:22Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:24Z" finished-at="2010-07-09T13:37:24Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2010-07-09T13:37:26Z" finished-at="2010-07-09T13:37:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:28Z" finished-at="2010-07-09T13:37:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="1" started-at="2010-07-09T13:37:30Z" finished-at="2010-07-09T13:37:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.startClient()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="check()" name="check" duration-ms="3" started-at="2010-07-09T13:37:30Z" depends-on-methods="rpc.RpcTest.startClient" finished-at="2010-07-09T13:37:30Z">
+        </test-method>
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:30Z" finished-at="2010-07-09T13:37:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.check()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:30Z" finished-at="2010-07-09T13:37:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void rpc.RpcTest.check()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestClass()" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2010-07-09T13:37:30Z" finished-at="2010-07-09T13:37:30Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   applicationComplete="init()"
+			   minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			[Bindable]
+			private var username:String;
+			private var password:String;
+			
+			private function init():void {
+				username = root.loaderInfo.parameters.username;
+				password = root.loaderInfo.parameters.password;
+				
+				ExternalInterface.call( "onFlashLog", username, username + "," + password );
+				
+				ExternalInterface.addCallback( "start", start );
+												
+				fireInitialized();
+			}
+			
+			public function fireInitialized():void {
+				ExternalInterface.call( "onFlashInitialized", username );
+			}
+			
+			public function fireFinished():void {
+				ExternalInterface.call( "onFlashFinished", username );
+			}
+			
+			public function timerHandler(event:TimerEvent):void {
+				fireFinished();
+			}
+			
+			
+			
+			public function start(  ):void {
+
+				ExternalInterface.call( "onFlashLog", username, "start work" );
+				
+				var timer:Timer = new Timer( 5000, 1 );
+				timer.addEventListener( TimerEvent.TIMER, timerHandler );
+				timer.start();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:Button click="fireFinished()" label="Exit" />
+	<s:Label text="appId = {username}" />
+	
+</s:Application>

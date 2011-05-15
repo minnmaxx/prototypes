@@ -1,0 +1,175 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>test</groupId>
+  <artifactId>jmstest</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>ActiveMQ in Action Examples</name>
+  
+  <!-- 
+  <properties>
+    <activemq-version>5.3.0</activemq-version>
+    <jta-version>1.0.1B</jta-version>
+    <commons-pool-version>1.5.3</commons-pool-version>
+    <springframework-version>2.5.6.A</springframework-version>
+    <xbean-version>3.3</xbean-version>
+  </properties>
+ 	-->
+ 	
+  <dependencies>
+  
+		
+		<!-- SECTION: logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.api</artifactId>
+			<version>1.5.10</version>
+	    </dependency>	
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>com.springsource.org.apache.commons.logging</artifactId>
+		    <version>1.1.1</version>
+		</dependency>					
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-core</artifactId>
+		    <version>0.9.15</version>
+		</dependency>	
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>0.9.15</version>
+		</dependency>  
+  
+  		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>org.springframework.test</artifactId>
+		    <version>3.0.0.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+  
+	<dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>com.springsource.org.testng</artifactId>
+	    <version>5.12.1</version>
+	    <scope>test</scope>
+	</dependency>	
+  	
+	<dependency>
+	    <groupId>org.apache.activemq</groupId>
+	    <artifactId>com.springsource.org.apache.activemq</artifactId>
+	    <version>5.3.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.activemq</groupId>
+	    <artifactId>com.springsource.org.apache.activemq.pool</artifactId>
+	    <version>5.3.0</version>
+	</dependency>	
+	<dependency>
+	    <groupId>javax.transaction</groupId>
+	    <artifactId>com.springsource.javax.transaction</artifactId>
+	    <version>1.1.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>org.springframework.spring-library</artifactId>
+	    <type>libd</type>
+	    <version>3.0.0.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.xbean</groupId>
+	    <artifactId>com.springsource.org.apache.xbean.spring</artifactId>
+	    <version>3.6.0</version>
+	</dependency>   
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>com.springsource.org.apache.commons.pool</artifactId>
+	    <version>1.5.3</version>
+	</dependency>
+    <dependency>
+	    <groupId>org.codehaus.jettison</groupId>
+	    <artifactId>com.springsource.org.codehaus.jettison</artifactId>
+	    <version>1.0.1</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.codehaus.woodstox</groupId>
+	    <artifactId>com.springsource.com.ctc.wstx</artifactId>
+	    <version>3.2.8</version>
+	</dependency>		
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>com.springsource.org.apache.commons.pool</artifactId>
+	    <version>1.5.3</version>
+	</dependency>	
+  </dependencies>
+
+  <build>
+    <plugins>
+    
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<version>2.1</version>
+		</plugin>	    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <target>1.6</target>
+          <source>1.6</source>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+	<repositories>
+		<!--
+		<repository>
+		    <id>com.springsource.repository.bundles.snapshot</id>
+		    <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Snapshot</name>
+			<url>http://repository.springsource.com/maven/bundles/snapshot</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundle.milestone</id>
+		    <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Milestones</name>
+			<url>http://repository.springsource.com/maven/bundles/milestone</url>
+		</repository>		
+		 -->
+		<repository>
+		    <id>com.springsource.repository.bundles.release</id>
+		    <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundle.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+
+		
+		<repository>
+		    <id>com.springsource.repository.libraries.release</id>
+		    <name>SpringSource Enterprise Bundle Repository - SpringSource Library Releases</name>
+		    <url>http://repository.springsource.com/maven/libraries/release</url>
+		</repository>
+		<repository>
+		    <id>com.springsource.repository.libraries.external</id>
+		    <name>SpringSource Enterprise Bundle Repository - External Library Releases</name>
+		    <url>http://repository.springsource.com/maven/libraries/external</url>
+		</repository>
+		<!-- 
+		<repository>
+		    <id>com.springsource.repository.libraries.milestone</id>
+		    <name>SpringSource Enterprise Bundle Repository - Milestone Library Releases</name>
+		    <url>http://repository.springsource.com/maven/libraries/milestone</url>
+		</repository>	
+		<repository>
+		    <id>com.springsource.repository.libraries.snapshot</id>
+		    <name>SpringSource Enterprise Bundle Repository - Snapshot Library Releases</name>
+		    <url>http://repository.springsource.com/maven/libraries/snapshot</url>
+		</repository>
+		 -->
+	</repositories>  
+
+</project>

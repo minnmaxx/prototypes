@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security 
+                        http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<!-- 
+	Automatically registers a login form, BASIC authentication, anonymous authentication, 
+	logout services, remember-me and servlet-api-integration. If set to "true", all of 
+	these capabilities are added (although you can still customize the configuration 
+	of each by providing the respective element).
+	 -->
+	<!--  
+	<http auto-config="true"/>
+	  -->
+	
+	<http>
+		<!-- remove security, authentication will be done at blazeds -->
+		
+		<intercept-url pattern="/Client.html" access="ROLE_chatclient" />
+		<intercept-url pattern="/community/**" access="ROLE_chatclient" />
+		<session-management>
+			<concurrency-control max-sessions="1" expired-url="/login.jsp?login_error=1" />
+		</session-management>
+		<form-login login-page="/login.jsp" 
+					default-target-url="/Client.html" 
+					authentication-failure-url="/login.jsp?login_error=1" />	
+		<logout logout-success-url="/login.jsp" />
+	</http>
+
+	<!-- 
+	<authentication-provider>
+		<user-service>
+			<user name="tangent" password="t" authorities="ROLE_chatclient" />
+			<user name="ariss" password="a" authorities="ROLE_chatclient" />
+			<user name="cody" password="c" authorities="ROLE_chatclient" />
+		</user-service>
+	</authentication-provider>
+	 -->
+	 
+	<authentication-manager>
+		<authentication-provider user-service-ref="userDetailsServiceImpl" />
+ 	</authentication-manager> 
+ 	
+</beans:beans>

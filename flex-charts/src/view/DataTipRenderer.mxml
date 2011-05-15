@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="true">
+	<fx:Script>
+		<![CDATA[
+			import flash.events.TextEvent;
+			
+			import mx.charts.series.items.BarSeriesItem;
+			
+			public function linkHandler(event:TextEvent):void {
+				// Open the link in a new window.
+				navigateToURL(new URLRequest(event.text), "_blank" );
+			}
+			
+			private function setTxt():void{
+				
+				//var item:BarSeriesItem = BarSeriesItem( data.chartItem );
+				
+//				textArea.htmlText = "<b>" + data.item.Country + "</b>";
+//				textArea.htmlText = "<a href=’http://www.wikipedia.com/wiki/" + data.item.Country + "’>" + data.item.Country + "</a>";
+			}			
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:HorizontalLayout>
+			
+		</s:HorizontalLayout>		
+	</s:layout>
+	
+	<s:Button label="Hedge" />
+	<s:Button label="Add" />
+	
+</s:ItemRenderer>

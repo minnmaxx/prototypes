@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Sample namespace-based configuration
+  -->
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+         
+    <http use-expressions="true">
+        <!-- 
+        <intercept-url pattern="/community/**" access="isAuthenticated()" />
+        <intercept-url pattern="/**/*.html" access="isAuthenticated()" />
+        <intercept-url pattern="/**" access="permitAll" />
+         -->
+        <form-login default-target-url="/Client.html" login-page="/login.jsp" />
+        <access-denied-handler error-page="/loginError.jsp" />
+        <logout />
+        <!-- error-if-maximum-exceeded="false"
+             The default behavior is to expire the original session.
+         -->
+        <session-management>
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="false" />
+        </session-management>
+    </http>
+
+    <authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="john" password="john" authorities="ROLE_USER,ROLE_ADMIN" />
+				<user name="guest" password="guest" authorities="ROLE_GUEST" />
+				<user name="tangent" password="t" authorities="ROLE_chatclient" />
+				<user name="ariss" password="a" authorities="ROLE_chatclient" />
+				<user name="ning" password="n" authorities="ROLE_chatclient" />
+			</user-service>
+		</authentication-provider>        
+    </authentication-manager>
+
+</beans:beans>

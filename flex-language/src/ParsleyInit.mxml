@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   xmlns:parsley="http://www.spicefactory.org/parsley"
+			   minWidth="955" minHeight="600"
+			   creationComplete="init()">
+
+	<fx:Declarations>
+		<parsley:Configure />
+		<parsley:ContextBuilder>
+			<parsley:FlexConfig type="{ParsleyInitContext}" />
+		</parsley:ContextBuilder>
+	</fx:Declarations>	
+	
+	<fx:Script>
+		<![CDATA[
+			import domain.InitObject;
+			
+			import org.spicefactory.lib.task.Task;
+			import org.spicefactory.parsley.core.factory.impl.GlobalFactoryRegistry;
+			import org.spicefactory.parsley.flex.logging.FlexLoggingXmlSupport;
+			import org.spicefactory.parsley.task.command.TaskCommandFactory;
+			import org.spicefactory.parsley.xml.XmlContextBuilder;
+			
+			private var var1:int = 1;
+			private var var2:int = 1;
+			
+			[Bindable]
+			private var sum:int = -99;
+			
+			[Inject]
+			public var initObject:InitObject;
+			
+			[Init]
+			public function add():void {
+				sum = initObject.sum();
+			}
+			
+			private function init():void {
+				
+				// logging
+				FlexLoggingXmlSupport.initialize();
+				XmlContextBuilder.build("logging.xml");				
+								
+				// tell parsley to manage Task as a Command ReturnType
+				GlobalFactoryRegistry.instance.messageRouter
+					.addCommandFactory( Task, new TaskCommandFactory() );
+			}			
+		]]>
+	</fx:Script>
+	
+	<s:HGroup>
+		
+		<s:Label text="{sum}" />
+	</s:HGroup>
+</s:Application>

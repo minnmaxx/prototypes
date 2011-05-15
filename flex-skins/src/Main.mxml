@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   initialize="initCollections()" >
+	<fx:Declarations>
+		<fx:Model id="listData" source="assets/xml/listData.xml"/>
+	</fx:Declarations>
+	
+	<fx:Style source="test.css" />
+
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.*;
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.MenuEvent;
+			import mx.managers.CursorManager;
+			import mx.managers.PopUpManager;
+			
+			import skins.SkinnableContainerSkin;
+			
+			public function openWindow():void
+			{
+				//PopUpManager.createPopUp(this,SampleTitleWindow,false);
+			}
+			
+			public function showAlert():void
+			{
+				Alert.show("This is a sample Alert.","Alert");              
+			}
+			
+			[Bindable]
+			public var menuBarCollection:XMLListCollection;
+			
+			private var menubarXML:XMLList =
+				<>
+					<menuitem label="Menu1" data="top">
+						<menuitem label="MenuItem 1-A" data="1A"/>
+						<menuitem label="MenuItem 1-B" data="1B"/>
+					</menuitem>
+					<menuitem label="Menu2" data="top">
+						<menuitem label="MenuItem 2-A" type="check"  data="2A"/>
+						<menuitem type="separator"/>
+						<menuitem label="MenuItem 2-B" >
+							<menuitem label="SubMenuItem 3-A" type="radio"
+								groupName="one" data="3A"/>
+							<menuitem label="SubMenuItem 3-B" type="radio"
+								groupName="one" data="3B"/>
+						</menuitem>
+					</menuitem>
+				</>;
+			
+			// Event handler to initialize the MenuBar control.
+			private function initCollections():void {
+				menuBarCollection = new XMLListCollection(menubarXML);
+			}			
+		]]>
+	</fx:Script>
+	
+	<s:Panel title="Panel" width="800" height="450" horizontalCenter="0" verticalCenter="0" >
+		
+		<mx:ViewStack left="6" y="28" id="vs" width="100%" height="100%" paddingLeft="6" paddingRight="6" paddingBottom="3" paddingTop="3"  >
+			<s:NavigatorContent label="Controls" width="100%" height="100%" skinClass="skins.SkinnableContainerSkin">
+				<!--
+				<s:VGroup width="100%" height="100%" left="3" top="3">
+					<s:Button left="3" top="3" label="Button" styleName="buttonNoOfficial" fontWeight="normal" height="21" enabled="true"/>
+					<s:CheckBox left="3" top="3"  label="Checkbox" enabled="true"/>
+				</s:VGroup>
+				-->
+			</s:NavigatorContent>
+			<s:NavigatorContent label="Lists" width="100%" height="100%" skinClass="skins.SkinnableContainerSkin">
+				<!--
+				<s:VGroup x="321" bottom="8" top="10">
+					<s:Label text="List" styleName="myText"/>
+					<s:List height="100%" width="160">
+						<s:ArrayList>
+							<fx:String>Flex</fx:String>
+							<fx:String>Illustrator</fx:String>
+							<fx:String>Photoshop</fx:String>
+						</s:ArrayList>
+					</s:List>
+				</s:VGroup>
+				-->
+			</s:NavigatorContent>
+		</mx:ViewStack>
+		
+		<s:TabBar left="6" y="2" dataProvider="{vs}" />
+		
+	</s:Panel>
+	
+	
+	
+</s:Application>

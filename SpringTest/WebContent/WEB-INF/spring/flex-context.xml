@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init"
+    xmlns="http://www.springframework.org/schema/beans"
+	xmlns:flex="http://www.springframework.org/schema/flex"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/flex 
+		http://www.springframework.org/schema/flex/spring-flex-1.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-2.0.4.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd" >
+ 
+ 	<!-- 
+ 	when this is defined, a MessageBrokerHandlerAdapter would be instantiated and
+ 	registered with the application context.
+ 	 -->
+	<flex:message-broker>
+		<!-- this configuration is used in the place of messaging-config.xml -->
+		<flex:message-service default-channels="my-streaming-amf-login" />
+		<flex:secured>			
+			<flex:secured-channel channel="my-streaming-amf-login" access="ROLE_chatclient"/>
+			<flex:secured-channel channel="my-amf-login" access="ROLE_chatclient"/>
+		</flex:secured>
+	</flex:message-broker>
+
+	<!-- Creates messaging destination -->
+	<flex:message-destination id="game" channels="my-streaming-amf-login" 
+		service-adapter="gameServer" />
+	
+	
+	<!--  Create two independent destinations and adapters -->
+	<!-- 
+	<bean id="gameServer" class="test.AdapterFactoryBean">
+		<constructor-arg value="test.GameAdapter"/>
+	</bean>
+		
+	<flex:message-destination id="game" channels="my-streaming-amf-login" 
+		service-adapter="gameServer" />
+		
+	
+	<bean id="gameServer1" class="test.AdapterFactoryBean">
+		<constructor-arg value="test.GameAdapter"/>
+	</bean>
+	 
+	<flex:message-destination id="game1" channels="my-streaming-amf-login" 
+		service-adapter="gameServer1" />
+		
+	 	
+	 -->
+	<flex:message-destination id="chat" channels="my-streaming-amf-login" /> 
+	 
+	<!-- Remoting destinations -->
+	<flex:remoting-destination ref="userService" channels="my-amf-login" />
+		
+</beans>

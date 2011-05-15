@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm 
+						http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+	version="2.0">
+
+	<entity class="model.ChannelDefinition">
+		
+		<table name="Channel" />
+		
+		<attributes>
+		
+			<embedded-id name="compositeId" />
+			
+			<basic name="description">
+				<column name="description" />
+			</basic>
+			<basic name="unit">
+				<column name="unitId" />
+			</basic>
+			<basic name="color">
+				<column name="color" />
+			</basic>
+			
+			<!-- 
+			<many-to-one name="majorStageExecution" fetch="LAZY">
+				<join-column name="majorStageExecutionId"  insertable="false" updatable="false" />
+			</many-to-one>
+			 -->
+			 			
+		</attributes>
+	</entity>
+	
+	<embeddable class="model.ChannelDefinitionId" >
+		<attributes>
+			<basic name="majorStageExecutionId">
+				<column name="majorStageExecutionId"/>
+			</basic>
+			<basic name="id">
+				<column name="id"/>
+			</basic>		
+		</attributes>
+	</embeddable>	
+							
+</entity-mappings>

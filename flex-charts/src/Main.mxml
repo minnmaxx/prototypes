@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.chartClasses.DataTip;
+			import mx.collections.ArrayCollection;
+			import mx.containers.Canvas;
+				
+			[Bindable]
+			private var medalsAC:ArrayCollection = new ArrayCollection( [
+				{ Country: "USA", x: 1, Gold: 35, Silver:39, Bronze: 29 },
+				{ Country: "China", x: 2, Gold: 32, Silver:17, Bronze: 14 },
+				{ Country: "Russia", x: 3, Gold: 27, Silver:27, Bronze: 38 } ]);	
+			
+			private var highlightOn:Boolean = false; 			
+			private function paint():void {
+		
+				canvas.clear();
+				highlightOn = !highlightOn;
+				
+				if( highlightOn ) {
+				
+					canvas.beginFill( 0xfffff88, 0.5 );
+					canvas.drawRect( 1.8, 0 , 2.2, 36 );
+					canvas.endFill();
+					
+				} else {
+					
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<mx:LineChart id="line" dataProvider="{medalsAC}">
+		
+		<mx:backgroundElements>
+			<mx:CartesianDataCanvas id="canvas" includeInRanges="true" />
+		</mx:backgroundElements>
+		
+		<mx:series>
+			<mx:LineSeries yField="Gold" xField="x" />
+		</mx:series>
+		
+	</mx:LineChart>
+	
+	<s:Button label="Paint" click="paint()" />
+	
+	<!--
+	<mx:BarChart id="bar"
+				 paddingLeft="5" paddingRight="5"
+				 showDataTips="true" dataProvider="{medalsAC}" dataTipRenderer="view.DataTipRenderer">
+		
+		<mx:verticalAxis>
+			<mx:CategoryAxis categoryField="Country" />
+		</mx:verticalAxis>
+		
+		<mx:series>
+			<mx:BarSet type="stacked" >
+				<mx:BarSeries yField="Country" xField="Gold" displayName="Gold"/>
+				<mx:BarSeries yField="Country" xField="Silver" displayName="Silver"/>
+				<mx:BarSeries yField="Country" xField="Bronze" displayName="Bronze"/>
+			</mx:BarSet>
+		</mx:series>
+	</mx:BarChart>
+	
+	<mx:Legend dataProvider="{bar}"/>
+	-->
+
+</s:Application>

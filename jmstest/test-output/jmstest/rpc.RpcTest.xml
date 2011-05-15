@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rpc.RpcTest" failures="0" tests="6" time="13.071" errors="0">
+  <properties/>
+  <testcase name="startClient" time="2.27" classname="rpc.RpcTest"/>
+  <testcase name="startClient" time="4.254" classname="rpc.RpcTest"/>
+  <testcase name="startClient" time="6.243" classname="rpc.RpcTest"/>
+  <testcase name="startClient" time="8.299" classname="rpc.RpcTest"/>
+  <testcase name="startClient" time="10.236" classname="rpc.RpcTest"/>
+  <testcase name="check" time="0.0030" classname="rpc.RpcTest"/>
+</testsuite>

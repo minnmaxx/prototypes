@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" applicationComplete="setupChannelSet()">
+
+	<mx:RemoteObject id="userService" destination="userService">
+		<mx:channelSet>
+			<mx:ChannelSet>
+				<mx:channels>
+					<mx:AMFChannel
+						uri="http://localhost:8080/SpringTest/community/amflogin" />
+				</mx:channels>
+			</mx:ChannelSet>
+		</mx:channelSet>
+	</mx:RemoteObject>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.messaging.Channel;
+			import mx.messaging.ChannelSet;
+			import mx.messaging.Consumer;
+			import mx.messaging.Producer;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.messaging.events.MessageAckEvent;
+			import mx.messaging.events.MessageEvent;
+			import mx.messaging.events.MessageFaultEvent;
+			import mx.messaging.messages.AsyncMessage;
+			import mx.messaging.messages.IMessage;
+			import mx.rpc.*;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.*;
+			
+			import vos.*;
+			
+			//--------------------------------------------------------------------------
+			// ChannelSet
+			//--------------------------------------------------------------------------
+//			[Bindable]
+//			private var cs:ChannelSet;
+//			[Bindable]
+//			private var defaultChannelAddress:String =
+//				"http://localhost:8080/SpringTest/community/streamingamflogin";
+			private function setupChannelSet():void
+			{
+//				cs = new ChannelSet();
+//				
+//				var channel:Channel;
+//				
+//				channel = new StreamingAMFChannel(null, defaultChannelAddress );
+//				
+//				cs.addChannel( channel );
+			}			
+			
+			//--------------------------------------------------------------------------
+			// Login 
+			//--------------------------------------------------------------------------
+			// Define an AsyncToken object.
+			private var token:AsyncToken;
+			private function login():void
+			{	
+				var cs:ChannelSet = userService.channelSet;
+				var channel:AMFChannel = AMFChannel( cs.channels[0] );
+				channel.uri = loginAddress.text;
+				
+				if( cs.authenticated == false ) {
+					token = cs.login( username.text, password.text );
+					// Add result and fault handlers.
+					token.addResponder(new AsyncResponder(LoginResultEvent, LoginFaultEvent));										
+				}
+								
+//				if (cs.authenticated == false) {
+//					token = cs.login( username.text, password.text );
+//					// Add result and fault handlers.
+//					token.addResponder(new AsyncResponder(LoginResultEvent, LoginFaultEvent));					
+//				}
+			}
+			
+			// Handle successful login.
+			private function LoginResultEvent(event:ResultEvent, token:Object=null):void 
+			{
+				var cs:ChannelSet = userService.channelSet;
+				var channel:AMFChannel = AMFChannel( cs.channels[0] );
+				log.text += "login succeeded at " + channel.uri + "\n";					
+			}
+			
+			// Handle login failure.
+			private function LoginFaultEvent(event:FaultEvent, token:Object=null):void 
+			{
+				log.text += "login failed: " + event.message + "\n";
+			}
+			
+			//--------------------------------------------------------------------------
+			// RPC
+			//--------------------------------------------------------------------------
+			[Bindable]
+			private var user:FractechUser;
+			
+			private function getUser():void
+			{	
+				// this is not a synchroneous call, it is async, therefore the return is a async token
+				var token:AsyncToken = userService.getUser();
+				token.addResponder( new AsyncResponder( getUserResult, getUserFault) );
+			}
+			
+			protected function getUserResult(event:ResultEvent, token:Object = null):void
+			{
+				log.text += "getUser succeeded\n";
+				//log.text += event.message + "\n";
+				//log.text += "-----end-----------------------------\n";
+				
+				user = FractechUser( event.result );	
+			}
+			
+			protected function getUserFault(event:FaultEvent, token:Object = null):void
+			{
+				log.text += "getUser Fault-----------------------------\n";
+				log.text += event.message + "\n";
+				log.text += "-----end----------------------------------\n";
+			}	
+			
+			
+			//--------------------------------------------------------------------------
+			// Logout
+			//--------------------------------------------------------------------------
+			
+			// Logout and handle success or failure.
+			private function logout():void 
+			{	
+				var cs:ChannelSet = userService.channelSet;
+				if( cs.authenticated == true ) {
+					token = cs.logout();
+					// Add result and fault handlers.
+					token.addResponder(new AsyncResponder(LogoutResultEvent, LogoutFaultEvent));					
+				} else {
+					log.text += "authenticated == false";
+				}
+				
+				// call the logout jsp
+//				if (cs.authenticated == true) {
+//					token = cs.logout();
+//					// Add result and fault handlers.
+//					token.addResponder(new AsyncResponder(LogoutResultEvent, LogoutFaultEvent));					
+//				}
+			}
+			
+			// Handle successful login.
+			private function LogoutResultEvent(event:ResultEvent, token:Object=null):void 
+			{
+				log.text += "logout succeeded\n";	
+				user = null;
+			}
+			
+			// Handle login failure.
+			private function LogoutFaultEvent(event:FaultEvent, token:Object=null):void 
+			{
+				log.text += "logout failed: " + event.message + "\n";
+			}				
+			
+			//--------------------------------------------------------------------------
+			// Utils
+			//--------------------------------------------------------------------------
+			private function clear():void
+			{
+				log.text = "";
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Panel title="Chat 1.0.8" width="100%" height="100%">
+		
+		<mx:VBox width="100%">
+			<mx:HBox>
+				<mx:Label text="Username" />
+				<mx:TextInput id="username" text="tangent" />
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Password" />
+				<mx:TextInput id="password" text="t" />
+			</mx:HBox>
+			<mx:HBox>
+				<mx:Label text="Name" />
+				<mx:Label text="{user.fullname}" />
+			</mx:HBox>		
+			<mx:HBox>
+				<mx:Label text="Login @ Address" />
+				<mx:TextInput id="loginAddress" text="http://localhost:8080/SpringTest/community/amflogin" />
+			</mx:HBox>			
+			<mx:HBox>
+				<mx:Button label="Login" click="login()"  />	
+				<mx:Button label="Logout" click="logout()" />
+				<mx:Button label="Clear" click="clear()" />
+			</mx:HBox>			
+		</mx:VBox>
+		
+		<mx:HBox height="30%" width="100%">				
+			<mx:TextArea id="log" width="100%" height="100%"/>
+		</mx:HBox>
+		
+	</mx:Panel>	
+</mx:Application>

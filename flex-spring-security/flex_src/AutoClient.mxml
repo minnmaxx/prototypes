@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   applicationComplete="init()"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.messaging.Channel;
+			import mx.messaging.ChannelSet;
+			import mx.messaging.Consumer;
+			import mx.messaging.Producer;
+			import mx.messaging.channels.StreamingAMFChannel;
+			import mx.messaging.events.MessageAckEvent;
+			import mx.messaging.events.MessageEvent;
+			import mx.messaging.events.MessageFaultEvent;
+			import mx.messaging.messages.AsyncMessage;
+			import mx.messaging.messages.IMessage;
+			import mx.rpc.AsyncResponder;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import vos.ChatMessageVO;
+			import vos.GameMessageVO;
+			import vos.SubscriptionMessageVO;
+			
+			private var username:String;
+			private var password:String;
+			
+			private var cs:ChannelSet;
+			private var defaultChannelAddress:String =
+				"http://localhost:8080/flex-spring-security/community/streamingamflogin";			
+			public function init():void {
+
+				debug("init");
+
+				// Get parameter list
+				var flashParams:Object = null;
+				if( root != null && root.loaderInfo != null ) {
+					flashParams = root.loaderInfo.parameters;
+				}	
+								
+				// set up call back functions
+				username = root.loaderInfo.parameters.username;
+				password = root.loaderInfo.parameters.password;
+				
+				javaLog( "[" + username + "," + password + "]" );
+				
+//				username = "1";
+//				password = "1";
+//				if( flashParams != null ) 
+//				{				
+//					if( flashParams.username != null && 
+//						flashParams.username != "" ) {
+//						username = root.loaderInfo.parameters.username;
+//					} else {
+//						debug( "username not found, use default" );
+//					}
+//					if( flashParams.password != null && 
+//						flashParams.password != "" ) {
+//						password = root.loaderInfo.parameters.password;
+//					} else {
+//						debug( "password not found, use default" );
+//					}
+//				}
+				
+				//
+				ExternalInterface.addCallback( "start", start );
+				
+				// channel
+				var channel:Channel;
+				channel = new StreamingAMFChannel(null, defaultChannelAddress );
+
+				cs = new ChannelSet();				
+				cs.addChannel( channel );
+				
+				//
+				login();
+			}
+			
+			public function start():void {
+				debug("start");
+				sendChatMessage();
+			}
+			
+			//--------------------------------------------------------------------------
+			// Login / Logout
+			//--------------------------------------------------------------------------
+			// Define an AsyncToken object.
+			private var token:AsyncToken;
+			private function login():void
+			{				
+				debug("login");
+				if (cs.authenticated == false) {
+					token = cs.login( username, password );
+					// Add result and fault handlers.
+					token.addResponder(new AsyncResponder(onLoginSucceeded, onAsyncResponderFault));					
+				}
+			}
+			
+			// Handle successful login.
+			private function onLoginSucceeded(event:ResultEvent, token:Object=null):void 
+			{
+				debug("onLoginSucceeded");
+				subscribe();					
+			}
+			
+			
+			// Logout and handle success or failure.
+			private function logout():void 
+			{	
+				debug("logout");
+				// Add result and fault handlers.
+				token = cs.logout();
+				token.addResponder(new AsyncResponder(onLogoutSucceeded,onAsyncResponderFault));
+			}
+			
+			// Handle successful logout.
+			private function onLogoutSucceeded(event:ResultEvent, token:Object=null):void {
+				debug("onLogoutSucceeded");
+				ExternalInterface.call( "onFlashFinished", username );
+			}	
+			
+			public function onAsyncResponderFault(error:FaultEvent, token:Object = null):void {
+				
+				debug("**** FAULT ****");
+				debug(error.toString());
+				ExternalInterface.call( "onFlashFault", username, error.message.toString() );
+			}
+			
+			//--------------------------------------------------------------------------
+			// Setup consumer/produce for destinations
+			//--------------------------------------------------------------------------	
+			
+			private var producerChat:Producer;
+			private var consumerChat:Consumer;
+			
+			private function subscribe():void
+			{
+				debug("subscribe");
+				
+				var destination:String = "chat";
+				
+				// chat destination
+				producerChat = new Producer();
+				producerChat.channelSet = cs;
+				producerChat.destination = destination;
+				//producerChat.addEventListener(MessageAckEvent.ACKNOWLEDGE,ackHandler);
+				producerChat.addEventListener(MessageFaultEvent.FAULT,onMessageFault);
+
+				consumerChat = new Consumer();
+				consumerChat.channelSet = cs;
+				consumerChat.destination = destination;
+				consumerChat.addEventListener(MessageEvent.MESSAGE, onChatMessageReceived);
+				consumerChat.addEventListener(MessageFaultEvent.FAULT, onMessageFault);														
+				consumerChat.addEventListener(MessageAckEvent.ACKNOWLEDGE, onSubscribeSucceeded);
+				
+				if( !consumerChat.subscribed ) {
+					consumerChat.subscribe();	
+				}			
+			}	
+			
+			[Bindable]
+			private var ready:Boolean = false;
+			private function onSubscribeSucceeded( event:MessageAckEvent ):void
+			{				
+				debug("onSubscribeSucceeded");
+				
+				consumerChat.removeEventListener(MessageAckEvent.ACKNOWLEDGE,onSubscribeSucceeded);
+				ready = true;
+				ExternalInterface.call( "onFlashInitialized", username );				
+			}
+			
+			
+			private function unsubscribe():void
+			{
+				debug("unsubscribe");
+				
+				if( consumerChat != null ) 
+				{
+					consumerChat.addEventListener(MessageAckEvent.ACKNOWLEDGE,onUnsubscribeSucceeded);
+					
+					//producerChat.removeEventListener(MessageAckEvent.ACKNOWLEDGE,ackHandler);
+					producerChat.removeEventListener(MessageFaultEvent.FAULT,onMessageFault);
+					
+					consumerChat.removeEventListener(MessageEvent.MESSAGE, onChatMessageReceived);
+					consumerChat.removeEventListener(MessageFaultEvent.FAULT,onMessageFault);
+					
+					if( consumerChat.subscribed ) {
+						consumerChat.unsubscribe();
+					}
+				}				
+			}
+			
+
+			private function onMessageFault( event:MessageFaultEvent ):void
+			{
+				debug("**** FAULT ****");
+				debug(event.toString());
+				ExternalInterface.call( "onFlashFault", username, event.toString() );
+			}
+			
+			
+			private function onUnsubscribeSucceeded( event:MessageAckEvent ):void
+			{
+				debug( "onUnsubscribeSucceeded" );
+				
+				consumerChat.removeEventListener(MessageAckEvent.ACKNOWLEDGE,onUnsubscribeSucceeded);
+				
+				cs.disconnectAll();
+				logout();
+			}
+			
+			//--------------------------------------------------------------------------
+			// Chat
+			//--------------------------------------------------------------------------			
+			private function sendChatMessage( ):void
+			{
+				var message:ChatMessageVO = new ChatMessageVO();
+				message.fromId = username;
+				message.content = "hello";
+				
+				send( producerChat, message );
+			}
+			
+			private var received:Object = {};
+			private function onChatMessageReceived(event:MessageEvent):void
+			{
+				debug( "onChatMessageReceived" );
+				if( event.message.body is ChatMessageVO )
+				{
+					var m:ChatMessageVO = ChatMessageVO( event.message.body );
+					received[ m.fromId ] = m;
+				
+					debug( m.toString() );
+					javaLog( m.toString() );
+					
+//					if( countReceived() == 1 ) {
+//						unsubscribe();
+//					} 
+				}
+			}
+			
+			private function countReceived():int {
+				var count:int = 0;
+				for each (var o:* in received) {
+					count++;
+				}
+				return count;
+			}
+
+			
+			//--------------------------------------------------------------------------
+			// Utils
+			//--------------------------------------------------------------------------	
+			private function andFunc( cond1:Boolean, cond2:Boolean ):Boolean
+			{
+				return (cond1 && cond2); 
+			}
+			
+			private function send( producer:Producer, body:Object ):void
+			{
+				var flexMessage:IMessage = new AsyncMessage();
+				flexMessage.body = body;
+				producer.send(flexMessage);
+			}
+			
+			private function debug( message:String ): void {
+				log.text += message;
+				log.text += "\n";
+			}
+			
+			private function javaLog( message:String ):void {
+				ExternalInterface.call( "onFlashLog", username, message );
+			}
+					
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:Button label="Ready" click="{start()}" enabled="{ready}" />
+	<s:Button label="End" click="{unsubscribe()}" />
+	<s:TextArea width="100%" height="100%" id="log" />
+	
+</s:Application>
