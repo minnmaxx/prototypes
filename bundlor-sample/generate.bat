@@ -1,0 +1,3 @@
+call C:\Package\bundlor-1.0.0.RELEASE\bin\bundlor -i flex-messaging-core.jar -o target/com.springsource.flex.messaging-4.0.0.14931.jar -m core.template.mf
+call C:\Package\bundlor-1.0.0.RELEASE\bin\bundlor -i flex-messaging-common.jar -o target/com.springsource.flex.messaging.common-4.0.0.14931.jar -m common.template.mf
+call C:\Package\bundlor-1.0.0.RELEASE\bin\bundlor -i flex-messaging-remoting.jar -o target/com.springsource.flex.messaging.services.remoting-4.0.0.14931.jar -m remoting.template.mf

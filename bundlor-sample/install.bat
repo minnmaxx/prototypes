@@ -1,0 +1,3 @@
+call C:\Package\apache-maven-2.2.1\bin\mvn install:install-file -DgroupId=com.adobe.flex -DartifactId=com.springsource.flex.messaging -Dversion=4.0.0.14931 -Dpackaging=jar -Dfile=com.springsource.flex.messaging-4.0.0.14931.jar
+call C:\Package\apache-maven-2.2.1\bin\mvn install:install-file -DgroupId=com.adobe.flex -DartifactId=com.springsource.flex.messaging.common -Dversion=4.0.0.14931 -Dpackaging=jar -Dfile=com.springsource.flex.messaging.common-4.0.0.14931.jar
+call C:\Package\apache-maven-2.2.1\bin\mvn install:install-file -DgroupId=com.adobe.flex -DartifactId=com.springsource.flex.messaging.services.remoting -Dversion=4.0.0.14931 -Dpackaging=jar -Dfile=com.springsource.flex.messaging.services.remoting-4.0.0.14931.jar
